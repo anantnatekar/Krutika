@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Krutika Natekar — My Experiments & Experiences</title>
+  <meta name="description" content="Krutika Natekar — travel diaries, recipes, writing and creative projects." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7fafc;
+      --card:#ffffff;
+      --accent:#0f62fe;
+      --muted:#6b7280;
+      --maxw:1100px;
+      --radius:12px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#fff);
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{max-width:var(--maxw);margin:36px auto;padding:20px;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .avatar{
+      width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,#e2e8f0,#dbeafe);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#0f1724;font-size:22px;
+      box-shadow:0 6px 18px rgba(15,23,36,0.06);
+    }
+    .title h1{margin:0;font-size:20px;letter-spacing:-0.2px}
+    .title p{margin:0;color:var(--muted);font-size:13px}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px}
+    nav a.primary{background:transparent;border:1px solid transparent;color:var(--accent)}
+    .hero{
+      display:grid;grid-template-columns:1fr 320px;gap:24px;margin-bottom:28px;
+      align-items:start;
+    }
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 20px rgba(15,23,36,0.06)}
+    .lead{font-size:16px;margin:0 0 12px 0;color:#071133;font-weight:600}
+    .sub{color:var(--muted);margin:0 0 16px 0}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:var(--accent);color:white;box-shadow:0 8px 18px rgba(15,98,254,0.12)}
+    .btn-ghost{background:transparent;border:1px solid #e6eefc;color:var(--accent)}
+    .profile-meta{font-size:14px;color:var(--muted);margin-top:10px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:12px}
+    .section-title{font-size:18px;margin:0 0 12px 0}
+    .list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+    .list a{display:block;padding:10px;border-radius:8px;text-decoration:none;background:#fbfdff;border:1px solid #eef5ff;color:#0f1724}
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:30px}
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;gap:16px}
+      .grid{grid-template-columns:1fr}
+      .avatar{width:60px;height:60px;font-size:20px}
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React (UMD) via CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <script>
+    const e = React.createElement;
+
+    function Nav({onOpen}) {
+      return e('nav', null,
+        e('a',{href:'#about'},'About'),
+        e('a',{href:'#projects'},'Projects'),
+        e('a',{href:'#travel'},'Travel Diaries'),
+        e('a',{href:'#recipes'},'Mom\'s Recipes'),
+        e('a',{href:'#contact', className:'primary', style:{border:'1px solid rgba(15,98,254,0.12)', color:'var(--accent)}'},'Contact')
+      );
+    }
+
+    function Card({title, children, img}) {
+      return e('section',{className:'card'},
+        img ? e('img',{src:img,alt:title}) : null,
+        e('h3',{className:'section-title'}, title),
+        e('div', null, children)
+      );
+    }
+
+    function App(){
+      return e('div',{className:'container'},
+        e('header', null,
+          e('div',{className:'brand'},
+            e('div',{className:'avatar'}, "KN"),
+            e('div',{className:'title'},
+              e('h1',null,'Krutika Natekar'),
+              e('p',null,'Travel, Food & Writing — Franklin, WI')
+            )
+          ),
+          e(Nav)
+        ),
+
+        e('main', null,
+          e('div',{className:'hero'},
+            e('div', {className:'card'},
+              e('p',{className:'lead'}, 'My Experiments & Experiences'),
+              e('p',{className:'sub'}, "This is a blog that I use to publish info about my travels and my mom's awesome recipes that I have begun to love! I'm 15 and live in Franklin, Wisconsin. I love to travel, watch cooking shows, and write."),
+              e('div',{className:'cta-row'},
+                e('button',{className:'btn btn-primary', onClick:()=>alert('Replace with resume download or contact link')}, 'Download Resume'),
+                e('button',{className:'btn btn-ghost', onClick:()=>document.getElementById('projects').scrollIntoView({behavior:'smooth'})}, 'Featured Projects')
+              ),
+              e('p',{className:'profile-meta'}, 'Published author • YouTube channel • Dancer')
+            ),
+
+            e('aside', {className:'card'},
+              e('h3',{className:'section-title'}, 'Quick Links'),
+              e('ul',{className:'list'},
+                e('li',null,e('a',{href:'#travel'},'Travel Diaries')),
+                e('li',null,e('a',{href:'#recipes'},'Mom\'s Recipes')),
+                e('li',null,e('a',{href:'#projects'},'My Books')),
+                e('li',null,e('a',{href:'#contact'},'Contact/Collaborate'))
+              )
+            )
+          ),
+
+          e('div',{className:'grid'},
+            e(Card, {title:'Featured: India - 2024', img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=60'},
+              e('p',null,'Short highlight: Our family trip to India in 2024 — favorite food, a memorable train ride, and the writing it inspired.'),
+              e('a',{href:'#', style:{color:'var(--accent)', fontWeight:700}}, 'Read more →')
+            ),
+
+            e(Card, {title:'My Books & Writing', img:'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=60'},
+              e('p',null,'I am a published author. Click to see my books and selected poems.'),
+              e('a',{href:'#', style:{color:'var(--accent)', fontWeight:700}}, 'Books →')
+            ),
+
+            e(Card, {title:'YouTube Channel', img:'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=60'},
+              e('p',null,'Short films, dance performances, and travel vlogs.'),
+              e('a',{href:'#', style:{color:'var(--accent)', fontWeight:700}}, 'YouTube →')
+            ),
+
+            e(Card, {title:'Mom\'s Recipes — Dal', img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=60'},
+              e('p',null,'My mom makes an incredible dal — recipe and step-by-step photos here.'),
+              e('a',{href:'#recipes', style:{color:'var(--accent)', fontWeight:700}}, 'Recipe →')
+            )
+          ),
+
+          e('section',{id:'travel', className:'card', style:{marginTop:20}},
+            e('h2',{className:'section-title'}, 'Travel Diaries'),
+            e('p',{className:'sub'}, 'Selected places and short notes — expand each to read full posts.'),
+            e('ul',{className:'list', style:{marginTop:12}},
+              e('li',null, e('a',{href:'#'}, 'Japan — what I learned about culture and food')),
+              e('li',null, e('a',{href:'#'}, 'Switzerland — hiking and writing')),
+              e('li',null, e('a',{href:'#'}, 'Italy (Venice) — canal reflections'))
+            )
+          ),
+
+          e('section',{id:'recipes', className:'card', style:{marginTop:18}},
+            e('h2',{className:'section-title'}, 'Mom\'s Recipes'),
+            e('p',{className:'sub'}, 'Family recipes I cook and write about.'),
+            e('ul',{className:'list', style:{marginTop:12}},
+              e('li',null, e('a',{href:'#'}, 'Dal — step-by-step')),
+              e('li',null, e('a',{href:'#'}, 'Mom\'s chutney')),
+              e('li',null, e('a',{href:'#'}, 'Birthday cake ideas'))
+            )
+          ),
+
+          e('section',{id:'projects', className:'card', style:{marginTop:18}},
+            e('h2',{className:'section-title'}, 'Projects & Writings'),
+            e('p',{className:'sub'}, 'Selected works — short descriptions and links.'),
+            e('ol',null,
+              e('li',null,'Poetry collection — link to PDF / excerpt'),
+              e('li',null,'Short story: "Summer in Pune" — published'),
+              e('li',null,'Dance performance notes and video')
+            )
+          ),
+
+          e('section',{id:'contact', className:'card', style:{marginTop:18}},
+            e('h2',{className:'section-title'}, 'Contact'),
+            e('p',{className:'sub'}, 'Want to collaborate or ask a question?'),
+            e('p',null, e('strong',null,'Email: '), 'yourname@email.com'),
+            e('p',null, e('strong',null,'Social: '), e('a',{href:'#'},'YouTube'), ' • ', e('a',{href:'#'},'Instagram'))
+          )
+        ),
+
+        e('footer', null, '© Krutika Natekar ', new Date().getFullYear())
+      );
+    }
+
+    const domRoot = document.getElementById('root');
+    ReactDOM.createRoot(domRoot).render(e(App));
+  </script>
+</body>
+</html>
